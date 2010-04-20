@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
  <HEAD>
@@ -17,27 +15,16 @@ re = "/^(\d{4})\/\(\d{1,2})\/\(\d{1,2})/";
 
 missinginfo = "";
 if (document.form.name.value == "") {
-missinginfo += "\n     -  Band Name";
+missinginfo += "\n     -  Name";
 }
-if (document.form.genre.value == "") {
-missinginfo += "\n     -  Genre";
+if (document.form.email.value == "") {
+missinginfo += "\n     -  Email";
 }
-if ((document.form.year.value=="") ||
-(document.form.year.value=="YYYY-MM-DD") || (document.form.year.value.match(re)))
-{
-missinginfo += "\n     -  Year Formed";
+if (document.form.title.value == "") {
+missinginfo += "\n     -  Title";
 }
-
-if (document.form.labels.value == "") {
-missinginfo += "\n     -  Labels";
-}
-if ((document.form.website.value == "") || 
-(document.form.website.value.indexOf("http://") == -1) || 
-(document.form.website.value.indexOf(".") == -1)) {
-missinginfo += "\n     -  Web site";
-}
-if(document.form.members.value == "") {
-missinginfo += "\n     -  Band Members";
+if(document.form.body.value == "") {
+missinginfo += "\n     -  Body";
 }
 
 if (missinginfo != "") {
@@ -60,24 +47,16 @@ else return true;
 
   <form method="post" form name=form action="submitband.php" onSubmit="return checkFields();">
 
-<input type=hidden name=to value='you @ your domain . web'>
 <input type=hidden name=subject value="Freedback">
 
 <pre>
-Band Name:    <input type=text name="name" size=30>
+Name:    	<input type=text name="name" size=40>
 
-Genre:        <input type=text name="genre" size=30>
+Email:        	<input type=text name="email" size=40>
 
-When Formed:  
-<script>DateInput('year',true,'YYYY-MM-DD')</script>
+Blog Title:     <input type=text name="title" size=40>
 
-Labels:       <input type=text name="labels" size=30>
-
-Web Site:     <input type=text value="http://" name="website" size=30>
-
-Band Members:  
-
-<textarea rows=3 cols=40 name="members"></textarea>
+<textarea rows=10 cols=58 name="body"></textarea>
 
 <input type=submit name="submit" value="Submit Form!">
 
