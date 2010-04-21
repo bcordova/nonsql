@@ -12,7 +12,7 @@
 	
 	<td width="200"><?php print( '<a href="addblog.php"><b>New Blog</b></a>' ); ?></td>           
 	<td width="200"><?php print( '<a href="editblog.php"><b>Edit Blogs</b></a>' ); ?></td>
-	<td width="200"><?php print( '<a href="deleteblog.php"><b>Delete Blogs</b></a>' ); ?></td> 
+	<td width="200"><?php print( '<a href="deleteblog.php"><b>Archived Blogs</b></a>' ); ?></td> 
 	
 	</tr>
 	</table>
