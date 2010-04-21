@@ -16,11 +16,12 @@
 	<div id="main">
 	<h3>Thank you for posting.</h3>
 <?php
-
+  
   $name = $_POST['name'];
   $email = $_POST['email'];
   $title = $_POST['title'];
   $body = $_POST['body'] ;
+  $date = new MongoDate();
 
   $m = new Mongo();
   $db = $m->blog_info;
@@ -28,8 +29,8 @@
 
   // Insert two documents (objects) into the db
   $collection->insert(array("name" => "$name", "email" =>
-                     "$email", "title" => "$title", "blog" => "$body"));					 					 
-  }
+                     "$email", "title" => "$title", "blog" => "$body", "date" => "$date"));					 					 
+  
 
    $m->close();
 ?>	

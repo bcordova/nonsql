@@ -27,7 +27,20 @@
 $m = new Mongo();
 $db = $m->blog_info;
 $collection = $db->blogs;
-$obj = $collection->findOne();
+//$obj = $collection->findOne();
+
+$newest = 0;
+$cursor = $collection->find();
+foreach ($cursor as $obj) {
+	$time = $obj["date"];
+    if($time > $newest) {
+	$newest = $time;
+	}
+}
+$query = array("date" => $newest);
+$cursor = $collection->find($query);
+
+
 
 echo $obj["title"];
 echo '<br>';
