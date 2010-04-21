@@ -3,10 +3,10 @@
 <HTML>
  <HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Add Blog</title>
+  <title>YSMISM</title>
   <link rel="stylesheet" type="text/css" href="style.css" />
-<script type="text/javascript" src="calendarDateInput.js"></script>
   <SCRIPT LANGUAGE="JavaScript">
+
 
 
 function checkFields() {
@@ -44,19 +44,52 @@ else return true;
  <BODY>
  <?php include("header.php"); ?>
  <div id="main">
+<?php
+$m = new Mongo();
+$db = $m->blog_info;
+$collection = $db->blogs;
 
-  <form method="post" form name=form action="submitblog.php" onSubmit="return checkFields();">
+    $id = $_GET['tag'];
+	//$query = array("date" => $id);
+	$cursor = $collection->find();
+	
+foreach ($cursor as $obj) {
 
+	$time = $obj["date"];
+    if($time == $id) {
+	$query = array("date" => $time);
+	
+	$cursor = $collection->find($query);	
+	
+	$title = $obj["title"];
+
+	$name = $obj["name"];
+
+	$email = $obj["email"];
+
+	$blog =  $obj["blog"];
+
+	}
+}
+
+
+$m->close();
+//'updateband.php?tag=$id'
+
+?>
+<form method="post" form name=form <?php echo "action='submitblog.php?tag=$id'" ?> onSubmit="return checkFields();">
+
+<input type=hidden name=to value='you @ your domain . web'>
 <input type=hidden name=subject value="Freedback">
 
 <pre>
-Name:    	<input type=text name="name" size=40>
+Name:         <input type=text value= "<?php $name; echo $name; ?>" name="name" size=40>
 
-Email:        	<input type=text name="email" size=40>
+Email:        <input type=text value = "<?php $email; echo $email; ?>" name="genre" size=40>
 
-Blog Title:     <input type=text name="title" size=40>
+Blog Title:   <input type=text value ="<?php $title; echo $title; ?>" name="year" size=40>  
 
-<textarea rows=10 cols=58 name="body"></textarea>
+<textarea rows=10 cols=58 name="members"><?php $blog; echo $blog; ?></textarea>
 
 <input type=submit name="submit" value="Submit Form!">
 
