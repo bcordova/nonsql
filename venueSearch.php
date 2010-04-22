@@ -16,13 +16,17 @@
 <div id='main'>
 	
 	<?php
+	$value = $_POST['venuesearchbox'];
+	echo "<h3>You Searched for $value...</h3>";
 	$m = new Mongo();
 	$db = $m->blog_info;
 	$collection = $db->blogs;
+	$regex = new MongoRegex("/.*$value.*/");
+	$query = array("title" => $regex);
 
-	$cursor = $collection->find();
+	$cursor = $collection->find($query);
 	foreach ($cursor as $obj) {
-    echo $obj["title"];
+    echo "<a href='viewblog.php?tag=" . $obj["date"] . "'>" .$obj["title"] . "</a>";
 	echo '<br>';
 	}
 

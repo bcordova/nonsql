@@ -29,6 +29,7 @@ $db = $m->blog_info;
 $collection = $db->blogs;
 //$obj = $collection->findOne();
 
+$count = 0;
 $newest = 0;
 $cursor = $collection->find();
 foreach ($cursor as $obj) {
@@ -36,6 +37,7 @@ foreach ($cursor as $obj) {
     if($time > $newest) {
 	$newest = $time;
 	}
+$count++;
 }
 $query = array("date" => $newest);
 $cursor = $collection->find($query);
@@ -50,6 +52,25 @@ echo $obj["name"];
 echo '<br>';
 echo '<br>';
 echo $obj["blog"];
+$randNum=rand(0,$count-1);
+$count=0;
+$cursor = $collection->find()->skip($randNum)->limit(1);
+	echo "</div>";
+	echo "<h3>Featured Blog</h3>";
+	echo "<div id='venue'>";
+foreach($cursor as $obj)
+{
+echo $obj["title"];
+echo '<br>';
+echo '<br>';
+echo "Posted by: ";
+echo $obj["name"];
+echo '<br>';
+echo '<br>';
+echo $obj["blog"];
+
+}
+
 
 $m->close();
 ?>
