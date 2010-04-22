@@ -28,7 +28,7 @@ $collection = $db->blogs;
 $cursor = $collection->find();
 foreach ($cursor as $obj) {
     $header = $obj["title"];
-	$id = $obj["_id"];
+	$id = $obj["date"];
 	echo "<a href='viewblog.php?tag=$id'>$header</a>";
 	echo '<br>';
 }

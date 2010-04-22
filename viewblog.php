@@ -28,37 +28,47 @@ $m = new Mongo();
 $db = $m->blog_info;
 $collection = $db->blogs;
 
-echo $collection->count();
 
-$query = array( "_id" => $id );
+$collection = $db->blogs;
 
-
-$obj = $collection->findone( array("_id" => $id)  );
-var_dump($obj);
-
-
-
-/*$newest = 0;
 $cursor = $collection->find();
+	
 foreach ($cursor as $obj) {
+
 	$time = $obj["date"];
-    if($time > $newest) {
-	$newest = $time;
+    if($time == $id) {
+	$query = array("date" => $time);
+	
+	$cursor = $collection->find($query);	
+	
+	$title = $obj["title"];
+
+	$name = $obj["name"];
+
+	$email = $obj["email"];
+
+	$blog =  $obj["blog"];
+
 	}
 }
-$query = array("date" => $newest);
-$cursor = $collection->find($query);
 
-
-
-echo $obj["title"];
+echo '<h3>';
+echo $title;
+echo '</h3>';
+echo '<br>';
+echo '<b>';
+echo 'Author: ';
+echo '</b>';
+echo $name;
+echo '<br>';
+echo '<b>';
+echo 'Email: ';
+echo '</b>';
+echo $email;
 echo '<br>';
 echo '<br>';
-echo "Posted by: ";
-echo $obj["name"];
+echo $blog;
 echo '<br>';
-echo '<br>';
-echo $obj["blog"];*/
 
 $m->close();
 ?>
