@@ -34,11 +34,26 @@
                      "$email", "title" => "$title", "blog" => "$body", "date" => "$date"));					 					 
   
    }else {
+   echo "$d\n";
+   
 
-	$cursor = $collection->find();
+	echo "$name\n";
+	$collection->update(array("date" => "$id"), array('$set' => array("name" => "$name")));
 	
-foreach ($cursor as $obj) {
+	echo "$email\n";
+	$collection->update(array("date" => "$id"), array('$set' => array('email' => "$email")));
+	echo "$title\n";
+	$collection->update(array("date" => "$id"), array('$set' => array('title' => "$title")));
+	echo "$body\n";
+	$collection->update(array("date" => "$id"), array('$set' => array('blog' => "$body")));
+	echo "$date\n";
+	$collection->update(array("date" => "$id"), array('$set' => array('date' => "$date")));
 
+		
+//	$cursor = $collection->find();
+	
+//foreach ($cursor as /*$obj*/$time => $id) {
+/*
 	$time = $obj["date"];
     if($time == $id) {
 	$query = array("date" => $time);
@@ -51,7 +66,7 @@ foreach ($cursor as $obj) {
 	$collection->update($filter,$names,$titles, $bodys,false,false);
 
    }
-   }
+   }*/
    }
    $m->close();
    

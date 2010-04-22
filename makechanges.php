@@ -85,11 +85,11 @@ $m->close();
 <pre>
 Name:         <input type=text value= "<?php $name; echo $name; ?>" name="name" size=40>
 
-Email:        <input type=text value = "<?php $email; echo $email; ?>" name="genre" size=40>
+Email:        <input type=text value = "<?php $email; echo $email; ?>" name="email" size=40>
 
-Blog Title:   <input type=text value ="<?php $title; echo $title; ?>" name="year" size=40>  
+Blog Title:   <input type=text value ="<?php $title; echo $title; ?>" name="title" size=40>  
 
-<textarea rows=10 cols=58 name="members"><?php $blog; echo $blog; ?></textarea>
+<textarea rows=10 cols=58 name="body"><?php $blog; echo $blog; ?></textarea>
 
 <input type=submit name="submit" value="Submit Form!">
 
